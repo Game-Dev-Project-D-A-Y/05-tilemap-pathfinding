@@ -4,6 +4,7 @@
  * A generic implementation of the BFS algorithm.
  * @author Erel Segal-Halevi
  * @since 2020-02
+ check
  */
 public class BFS {
 
