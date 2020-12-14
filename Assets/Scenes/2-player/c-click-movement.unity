@@ -395,6 +395,8 @@ MonoBehaviour:
   tilemap: {fileID: 931517250}
   allowedTiles: {fileID: 73550133}
   speed: 10
+  speedOfBushes: 1.5
+  speedOfHills: 1
   maxIterations: 10000
   targetInWorld: {x: 0, y: 0, z: 0}
   targetInGrid: {x: 0, y: 0, z: 0}
@@ -411,6 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 931517250}
+  tileOnHatizva: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
   allowedTiles: {fileID: 73550133}
 --- !u!1 &931517247
 GameObject:

@@ -52,7 +52,6 @@ public class TargetMover: MonoBehaviour {
 
     IEnumerator MoveTowardsTheTarget() {
         for(;;) {
-            Debug.Log(""+tilemap.GetTile(tilemap.WorldToCell(transform.position)));
 
             TileBase currTile = tilemap.GetTile(tilemap.WorldToCell(transform.position));
             if(currTile.name == "bushes")
