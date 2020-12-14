@@ -42,6 +42,26 @@ public class TileWeightedGraph : IWeightedGraph<Vector3Int>
 
     public double Weight(Vector3Int node1, Vector3Int node2)
     {
-        return 1;
+        TileBase node1Tile = tilemap.GetTile(node1);
+        TileBase node2Tile = tilemap.GetTile(node2);
+        switch (node2Tile.name)
+        {
+            case "bushes":
+                return 6;
+            case "swamp":
+                return 1;
+
+            case "hills":
+                return 4;
+
+            case "grass":
+                return 3;
+
+            default:
+                return 1 ;
+
+        }
+
+
     }
 }
