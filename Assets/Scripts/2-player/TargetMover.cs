@@ -36,11 +36,14 @@ public class TargetMover: MonoBehaviour {
         return targetInWorld;
     }
 
-    private TilemapGraph tilemapGraph = null;
+    //private TilemapGraph tilemapGraph = null;
+    private TileWeightedGraph tilemapGraph;
     private float timeBetweenSteps;
 
     protected virtual void Start() {
-        tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
+        //tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
+        tilemapGraph = new TileWeightedGraph(tilemap, allowedTiles.Get());
+
         timeBetweenSteps = 1 / speed;
         StartCoroutine(MoveTowardsTheTarget());
     }
@@ -56,8 +59,15 @@ public class TargetMover: MonoBehaviour {
     private void MakeOneStepTowardsTheTarget() {
         Vector3Int startNode = tilemap.WorldToCell(transform.position);
         Vector3Int endNode = targetInGrid;
-        List<Vector3Int> shortestPath = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
-        Debug.Log("shortestPath = " + string.Join(" , ",shortestPath));
+        //List<Vector3Int> shortestPath = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
+        List<Vector3Int> shortestPath = Dijkstra.ShortestPath<Vector3Int>(tilemapGraph, 
+            startNode, 
+            endNode, 
+            tilemapGraph.Equals, 
+            tilemapGraph.Weight, 
+            maxIterations);
+
+        Debug.Log("shortestPath1 = " + string.Join(" , ",shortestPath));
         if (shortestPath.Count >= 2) {
             Vector3Int nextNode = shortestPath[1];
             transform.position = tilemap.GetCellCenterWorld(nextNode);
