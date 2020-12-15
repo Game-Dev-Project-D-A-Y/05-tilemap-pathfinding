@@ -91,7 +91,8 @@ public class CaveGenerator {
                 } else if (surroundingWalls == 4) {
                     bufferNew[x, y] = bufferOld[x, y];
                 } else {
-
+                    
+                    // Set the most common tile around this tile
                     bufferNew[x, y] = mostTilesSurrounded(x,y);
                 }
        
@@ -111,8 +112,6 @@ public class CaveGenerator {
         int grassCounter = 0;
         int hillsCounter = 0;
         
-      
-
         for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX++)
         {
             for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++)
@@ -135,7 +134,7 @@ public class CaveGenerator {
             return -1;
         }
     }
-    
+
     //Given a cell, how many of the 8 surrounding cells are walls?
     private int GetSurroundingWallCount(int cellX, int cellY) {
         int wallCounter = 0;
