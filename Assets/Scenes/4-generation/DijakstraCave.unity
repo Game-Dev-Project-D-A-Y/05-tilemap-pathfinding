@@ -160,6 +160,7 @@ MonoBehaviour:
   maxIterations: 10000
   targetInWorld: {x: 0, y: 0, z: 0}
   targetInGrid: {x: 0, y: 0, z: 0}
+  a: 1
 --- !u!212 &130779376
 SpriteRenderer:
   m_ObjectHideFlags: 0
