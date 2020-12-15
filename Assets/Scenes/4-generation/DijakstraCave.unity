@@ -652,8 +652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 931517250}
   wallTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
-  floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
-  forestTile: {fileID: 11400000, guid: 2ad1759387b28444892c8549e6122652, type: 2}
+  grassTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  hillsTile: {fileID: 11400000, guid: 2ad1759387b28444892c8549e6122652, type: 2}
   randomFillPercent: 0.5
   gridSize: 100
   simulationSteps: 20
