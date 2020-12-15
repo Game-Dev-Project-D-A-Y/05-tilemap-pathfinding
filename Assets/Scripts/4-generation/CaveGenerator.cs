@@ -58,7 +58,7 @@ public class CaveGenerator {
                     bufferOld[x, y] = 1;
                 } else {
                     //Random walls and caves
-                    bufferOld[x, y] = random.NextDouble() < randomFillPercent ? 1 : 0;
+                    bufferOld[x, y] = random.NextDouble() < randomFillPercent ? 1 : random.Next(-1,1);
                 }
             }
         }
@@ -87,17 +87,93 @@ public class CaveGenerator {
                 } else if (surroundingWalls == 4) {
                     bufferNew[x, y] = bufferOld[x, y];
                 } else {
-                    bufferNew[x, y] = 0;
+
+                    bufferNew[x, y] = mostTilesSurrounded(x,y);
                 }
+       
             }
         }
 
-        //Swap the pointers to the buffers
         (bufferOld, bufferNew) = (bufferNew, bufferOld);
+
+        /*
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                if (bufferOld[x, y] == 1) continue;
+
+                int surroundingTiles = GetSurroundingTileCountByType(x, y, bufferOld[x, y]);
+                if (surroundingTiles > 4)
+                {
+                    bufferNew[x, y] = bufferOld[x, y];
+                }
+                else
+                {
+                    bufferNew[x, y] = -1*(bufferOld[x, y] + 1);
+                }
+
+            }
+        }
+
+                //Swap the pointers to the buffers
+                (bufferOld, bufferNew) = (bufferNew, bufferOld);
+        */
     }
 
+    private int GetSurroundingTileCountByType(int cellX, int cellY, int type)
+    {
+        int wallCounter = 0;
+        for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX++)
+        {
+            for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++)
+            {
+                //We dont need to care about being outside of the grid because we are never looking at the border
+                //This is the cell itself and no neighbor!
+                if (neighborX == cellX || neighborY == cellY)
+                {
+                    continue;
+                }
 
+                //This neighbor is a wall
+                if (bufferOld[neighborX, neighborY] == type || bufferOld[neighborX, neighborY] == 1)
+                {
+                    wallCounter += 1;
+                }
+            }
+        }
+        return wallCounter;
+    }
 
+    private int mostTilesSurrounded(int cellX, int cellY)
+    {
+        int counter0 = 0;
+        int counter2 = 0;
+        
+      
+
+        for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX++)
+        {
+            for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++)
+            {
+                if (bufferOld[neighborX,neighborY] == 0)
+                {
+                    counter0++;
+                }else if (bufferOld[neighborX, neighborY] == -1)
+                {
+                    counter2++;
+                }
+            }
+        }
+        if(counter0 >= counter2)
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+    }
     //Given a cell, how many of the 8 surrounding cells are walls?
     private int GetSurroundingWallCount(int cellX, int cellY) {
         int wallCounter = 0;

@@ -43,6 +43,8 @@ public class TargetMover: MonoBehaviour {
     private float timeBetweenSteps;
 
     protected virtual void Start() {
+        targetInWorld = transform.position;
+        targetInGrid = tilemap.WorldToCell(targetInWorld);
         //tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
         tilemapGraph = new TileWeightedGraph(tilemap, allowedTiles.Get());
 

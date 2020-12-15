@@ -155,6 +155,8 @@ MonoBehaviour:
   tilemap: {fileID: 931517250}
   allowedTiles: {fileID: 1972678413}
   speed: 10
+  speedOfBushes: 1.5
+  speedOfHills: 1
   maxIterations: 1000
   targetInWorld: {x: 0, y: 0, z: 0}
   targetInGrid: {x: 0, y: 0, z: 0}
@@ -216,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130779374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.5, y: 55.5, z: 0}
+  m_LocalPosition: {x: 55.5, y: 55.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519420032}
@@ -236,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 931517250}
+  tileChangeFirst: {fileID: 11400000, guid: 3f0f423f26bd25a4ebc3ff760c29e134, type: 2}
+  tileChangeSecond: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
   allowedTiles: {fileID: 1972678413}
 --- !u!1 &419043803
 GameObject:
@@ -648,6 +652,7 @@ MonoBehaviour:
   tilemap: {fileID: 931517250}
   wallTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
   floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  forestTile: {fileID: 11400000, guid: 2ad1759387b28444892c8549e6122652, type: 2}
   randomFillPercent: 0.5
   gridSize: 100
   simulationSteps: 20

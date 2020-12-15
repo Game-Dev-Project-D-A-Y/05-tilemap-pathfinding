@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130779377}
   - component: {fileID: 130779376}
+  - component: {fileID: 130779378}
   - component: {fileID: 130779375}
   m_Layer: 0
   m_Name: Player
@@ -148,9 +149,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 130779374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1458121c39bcf14f80bd7451ec4ec9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b66181536e4477479fa38aaadfc15e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemap: {fileID: 931517250}
+  allowedTiles: {fileID: 1972678413}
+  speed: 10
+  speedOfBushes: 1.5
+  speedOfHills: 1
+  maxIterations: 10000
+  targetInWorld: {x: 0, y: 0, z: 0}
+  targetInGrid: {x: 0, y: 0, z: 0}
 --- !u!212 &130779376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -209,12 +218,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130779374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.5, y: 55.5, z: 0}
+  m_LocalPosition: {x: 55.5, y: 55.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &130779378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130779374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4eb7d9a315cea645a998e90834ca05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 931517250}
+  tileChangeFirst: {fileID: 11400000, guid: 3f0f423f26bd25a4ebc3ff760c29e134, type: 2}
+  tileChangeSecond: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  allowedTiles: {fileID: 1972678413}
 --- !u!1 &419043803
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,11 +329,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419043803}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10, y: 10, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalPosition: {x: 45.73, y: 47.52, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -362,7 +388,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -385,11 +411,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 10, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 130779377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &536966464
@@ -435,7 +461,7 @@ Transform:
   - {fileID: 931517248}
   - {fileID: 1972678412}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931517247
 GameObject:
@@ -626,11 +652,11 @@ MonoBehaviour:
   tilemap: {fileID: 931517250}
   wallTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
   floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
-  forestTile: {fileID: 11400000, guid: 8f2cab6dea1a2d147b231cc92eb1f7e2, type: 2}
-  randomFillPercent: 0.4
-  gridSize: 20
-  simulationSteps: 10
-  pauseTime: 1
+  forestTile: {fileID: 11400000, guid: 2ad1759387b28444892c8549e6122652, type: 2}
+  randomFillPercent: 0.5
+  gridSize: 100
+  simulationSteps: 20
+  pauseTime: 0.01
 --- !u!1 &1972678411
 GameObject:
   m_ObjectHideFlags: 0
