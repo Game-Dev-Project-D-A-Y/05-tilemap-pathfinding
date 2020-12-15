@@ -42,7 +42,6 @@ public class TileWeightedGraph : IWeightedGraph<Vector3Int>
 
     public double Weight(Vector3Int node1, Vector3Int node2)
     {
-        TileBase node1Tile = tilemap.GetTile(node1);
         TileBase node2Tile = tilemap.GetTile(node2);
         switch (node2Tile.name)
         {

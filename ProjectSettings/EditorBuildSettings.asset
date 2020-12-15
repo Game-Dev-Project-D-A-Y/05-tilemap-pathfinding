@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/3-enemies/c-patrol.unity
-    guid: cbdbd2056f2a7574295152774e1734f1
+    path: Assets/Scenes/4-generation/DijakstraCave.unity
+    guid: 299d7a0024ee11e4fb2474064673d92d
   m_configObjects: {}

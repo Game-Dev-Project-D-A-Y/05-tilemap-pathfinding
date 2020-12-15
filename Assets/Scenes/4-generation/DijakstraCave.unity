@@ -157,10 +157,10 @@ MonoBehaviour:
   speed: 10
   speedOfBushes: 1.5
   speedOfHills: 1
+  speedOfSwamp: 1.8
   maxIterations: 10000
   targetInWorld: {x: 0, y: 0, z: 0}
   targetInGrid: {x: 0, y: 0, z: 0}
-  a: 1
 --- !u!212 &130779376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 931517250}
-  tileChangeFirst: {fileID: 11400000, guid: 3f0f423f26bd25a4ebc3ff760c29e134, type: 2}
-  tileChangeSecond: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  tileOnQuarrying: {fileID: 11400000, guid: 3f0f423f26bd25a4ebc3ff760c29e134, type: 2}
+  tileAfterQuarrying: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
   allowedTiles: {fileID: 1972678413}
 --- !u!1 &419043803
 GameObject:
