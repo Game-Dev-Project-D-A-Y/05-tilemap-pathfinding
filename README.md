@@ -19,7 +19,7 @@ After updating the newBuffer with the right numbers we change each number (1,0,-
 
 ### Part E - "Digging" the mountain until it becoms grass   
     
- <img src=https:https://github.com/Game-Dev-Project-D-A-Y/05-tilemap-pathfinding/blob/master/digging.jpg width="300"/>    
+<img src=https://github.com/Game-Dev-Project-D-A-Y/05-tilemap-pathfinding/blob/master/digging.jpg width="300"/>    
   
 While pressing the 'X' key our player can dig through "mountain" tile only while the first strike will make the tile purpule the seconed stroke will make it grass.    
 We uset the **setTile** command to change the tile every time you are infront of a 'mountain' tile and you have pressed x (same with second stroke). Please look at our [KeyboardMoverByTile](https://github.com/Game-Dev-Project-D-A-Y/05-tilemap-pathfinding/blob/master/Assets/Scripts/2-player/KeyboardMoverByTile.cs) script
