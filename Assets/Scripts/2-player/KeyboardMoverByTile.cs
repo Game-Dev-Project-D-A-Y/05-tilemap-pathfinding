@@ -7,7 +7,9 @@ using UnityEngine.Tilemaps;
  */
 public class KeyboardMoverByTile: KeyboardMover {
     [SerializeField] Tilemap tilemap = null;
-    [SerializeField] TileBase tileOnHatizva =null ;
+    [SerializeField] TileBase tileChangeFirst =null ;
+    [SerializeField] TileBase tileChangeSecond =null ;
+
 
     [SerializeField] AllowedTiles allowedTiles = null;
 
@@ -26,13 +28,23 @@ public class KeyboardMoverByTile: KeyboardMover {
             {
                 if (Input.GetKey("x"))
                 {
-                 
-                    tileOnNewPosition = tileOnHatizva;
-                    transform.position = newPosition;
-                    Debug.Log(" walk on " + tileOnNewPosition + "!");
+                    Vector3Int newPositionV3 = tilemap.WorldToCell(newPosition);
+                    tilemap.SetTile(newPositionV3,tileChangeFirst);
+
                 }
-            }
+                
             Debug.Log("You cannot walk on " + tileOnNewPosition + "!");
+            }
+                    if (tileOnNewPosition != null && tileOnNewPosition.name == "mountainBreak")
+                    {
+                          if (Input.GetKey("x"))
+                            {
+                                 Vector3Int newPositionV3 = tilemap.WorldToCell(newPosition);
+                                 tilemap.SetTile(newPositionV3,tileChangeSecond);
+                                transform.position = newPosition;
+                            }
+                    }
+
         }
     }
 }

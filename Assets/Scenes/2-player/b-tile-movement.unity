@@ -392,6 +392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 931517250}
+  tileChangeFirst: {fileID: 11400000, guid: 27a10ed4aca7af04d99475611b2a3ec1, type: 2}
+  tileChangeSecond: {fileID: 11400000, guid: 8f2cab6dea1a2d147b231cc92eb1f7e2, type: 2}
   allowedTiles: {fileID: 73550133}
 --- !u!1 &931517247
 GameObject:
@@ -419,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931517247}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536966466}
