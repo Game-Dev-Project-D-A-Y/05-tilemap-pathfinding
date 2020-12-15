@@ -38,6 +38,11 @@ public class TargetMover: MonoBehaviour {
         return targetInWorld;
     }
 
+    public void StartMover()
+    {
+        Start();
+    }
+
     //private TilemapGraph tilemapGraph = null;
     private TileWeightedGraph tilemapGraph;
     private float timeBetweenSteps;
@@ -54,27 +59,30 @@ public class TargetMover: MonoBehaviour {
 
     IEnumerator MoveTowardsTheTarget() {
         for(;;) {
-
+            timeBetweenSteps = 1 / speed;
             TileBase currTile = tilemap.GetTile(tilemap.WorldToCell(transform.position));
-            if(currTile.name == "bushes")
+            //if (currTile == null) yield break;
+            if (currTile != null)
             {
-                // timeBetweenSteps *= 1/0.9f ;
-                timeBetweenSteps = 1/speedOfBushes;
+                if (currTile.name == "bushes")
+                {
+                    // timeBetweenSteps *= 1/0.9f ;
+                    timeBetweenSteps = 1 / speedOfBushes;
+                }
+                if (currTile.name == "hills")
+                {
+                    // timeBetweenSteps *= 1/0.9f ;
+                    timeBetweenSteps = 1 / speedOfHills;
+                }
+                if (currTile.name == "swamp")
+                {
+                    timeBetweenSteps = 1 / speed;
+                }
+                if (currTile.name == "grass")
+                {
+                    timeBetweenSteps = 1 / speed;
+                }
             }
-            if (currTile.name == "hills")
-            {
-                // timeBetweenSteps *= 1/0.9f ;
-                timeBetweenSteps = 1/speedOfHills;
-            }
-            if (currTile.name == "swamp")
-            {
-                timeBetweenSteps = 1 / speed;
-            }
-            if (currTile.name == "grass")
-            {
-                timeBetweenSteps = 1 / speed;
-            }
-
 
             yield return new WaitForSeconds(timeBetweenSteps);
             if (enabled && !atTarget)

@@ -63,6 +63,9 @@ public class TilemapCaveGenerator: MonoBehaviour {
             //Generate texture and display it on the plane
             GenerateAndDisplayTexture(caveGenerator.GetMap());
         }
+ 
+
+       // mover.StartMover();
         Debug.Log("Simulation completed!");
     }
 
