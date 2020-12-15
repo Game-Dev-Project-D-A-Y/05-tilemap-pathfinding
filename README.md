@@ -2,6 +2,7 @@
 ## Weekly assignment No8 Part A,C,D,E  
 
 #### [View On Itch](https://game-dev-project-d-a-y.itch.io/dijkstracave)
+<img src=https://github.com/Game-Dev-Project-D-A-Y/05-tilemap-pathfinding/blob/master/itch.jpg width="180"/>    
     
     
 ### Part A - Dijkstra's algorithm   
