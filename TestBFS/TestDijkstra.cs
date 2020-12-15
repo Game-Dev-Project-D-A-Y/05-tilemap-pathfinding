@@ -71,7 +71,7 @@ namespace TestDijkstra {
             Console.WriteLine("path is: " + pathString);
             Debug.Assert(pathString == "");
 
-            Console.WriteLine("End BFS Test");
+            Console.WriteLine("End Dijkstra Test");
         }
     }
 
