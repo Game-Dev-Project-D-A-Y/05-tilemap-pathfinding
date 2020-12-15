@@ -5,46 +5,58 @@ using UnityEngine.Tilemaps;
  * This component allows the player to move by clicking the arrow keys,
  * but only if the new position is on an allowed tile.
  */
-public class KeyboardMoverByTile: KeyboardMover {
-    [SerializeField] Tilemap tilemap = null;
-    [SerializeField] TileBase tileChangeFirst;
-    [SerializeField] TileBase tileChangeSecond;
+public class KeyboardMoverByTile : KeyboardMover
+{
+    [SerializeField]
+    Tilemap tilemap = null;
 
+    [SerializeField]
+    TileBase tileOnQuarrying;
 
-    [SerializeField] AllowedTiles allowedTiles = null;
+    [SerializeField]
+    TileBase tileAfterQuarrying;
 
-    private TileBase TileOnPosition(Vector3 worldPosition) {
+    [SerializeField]
+    AllowedTiles allowedTiles = null;
+
+    private TileBase TileOnPosition(Vector3 worldPosition)
+    {
         Vector3Int cellPosition = tilemap.WorldToCell(worldPosition);
         return tilemap.GetTile(cellPosition);
     }
 
-    void Update()  {
+    void Update()
+    {
         Vector3 newPosition = NewPosition();
         TileBase tileOnNewPosition = TileOnPosition(newPosition);
-        if (allowedTiles.Contain(tileOnNewPosition)) {
+        if (allowedTiles.Contain(tileOnNewPosition))
+        {
             transform.position = newPosition;
-        } else {
+        }
+        else
+        {
+            // For quarrying mountains:
             if (tileOnNewPosition != null && tileOnNewPosition.name == "mountains")
             {
                 if (Input.GetKey("x"))
                 {
                     Vector3Int newPositionV3 = tilemap.WorldToCell(newPosition);
-                    tilemap.SetTile(newPositionV3,tileChangeFirst);
-
+                    tilemap.SetTile (newPositionV3, tileOnQuarrying);
                 }
-                
-            Debug.Log("You cannot walk on " + tileOnNewPosition + "!");
-            }
-                    if (tileOnNewPosition != null && tileOnNewPosition.name == tileChangeFirst.name)
-                    {
-                          if (Input.GetKey("x"))
-                            {
-                                 Vector3Int newPositionV3 = tilemap.WorldToCell(newPosition);
-                                 tilemap.SetTile(newPositionV3,tileChangeSecond);
-                                transform.position = newPosition;
-                            }
-                    }
 
+                Debug.Log("You cannot walk on " + tileOnNewPosition + "!");
+            }
+
+            if (tileOnNewPosition != null && tileOnNewPosition.name == tileOnQuarrying.name)
+            {
+                if (Input.GetKey("x"))
+                {
+                    Vector3Int newPositionV3 = tilemap.WorldToCell(newPosition);
+                    tilemap.SetTile (newPositionV3, tileAfterQuarrying);
+                    transform.position = newPosition;
+                }
+            }
+            //
         }
     }
 }

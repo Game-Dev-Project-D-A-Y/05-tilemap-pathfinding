@@ -58,6 +58,10 @@ public class CaveGenerator {
                     bufferOld[x, y] = 1;
                 } else {
                     //Random walls and caves
+
+                    // Changes made:
+                    // caves can be grass or hills
+                    // -1 represents hills and 0 represents grass
                     bufferOld[x, y] = random.NextDouble() < randomFillPercent ? 1 : random.Next(-1,1);
                 }
             }
@@ -99,11 +103,13 @@ public class CaveGenerator {
     }
 
 
-
+    /*
+    * Returns the type of the most common tile around the given tile in cellX and cellY coordinates
+    */
     private int mostTilesSurrounded(int cellX, int cellY)
     {
-        int counter0 = 0;
-        int counter2 = 0;
+        int grassCounter = 0;
+        int hillsCounter = 0;
         
       
 
@@ -113,14 +119,14 @@ public class CaveGenerator {
             {
                 if (bufferOld[neighborX,neighborY] == 0)
                 {
-                    counter0++;
+                    grassCounter++;
                 }else if (bufferOld[neighborX, neighborY] == -1)
                 {
-                    counter2++;
+                    hillsCounter++;
                 }
             }
         }
-        if(counter0 >= counter2)
+        if(grassCounter >= hillsCounter)
         {
             return 0;
         }
@@ -129,6 +135,7 @@ public class CaveGenerator {
             return -1;
         }
     }
+    
     //Given a cell, how many of the 8 surrounding cells are walls?
     private int GetSurroundingWallCount(int cellX, int cellY) {
         int wallCounter = 0;

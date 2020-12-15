@@ -8,20 +8,22 @@ public class Dijkstra
 		IWeightedGraph<TNode> graph,
 		TNode sourceNode,
 		TNode targetNode,
-		Func<TNode, TNode, bool> fnEquals,
-		Func<TNode, TNode, double> fnDistance,
 		int maxiterations = 1000
 	)
 	{
 		// Initialize values
 		Dictionary<TNode, double> distance = new Dictionary<TNode, double>();
 		Dictionary<TNode, TNode> previous = new Dictionary<TNode, TNode>();
+
+		// Instead of PriorityQueue
 		List<TNode> localNodes = new List<TNode>();
 
 		localNodes.Add(sourceNode);
-		distance.Add(sourceNode, 0);  //distance[sourceNode] = 0;
+		distance.Add(sourceNode, 0); 
 
+		// For iterations limit:
 		int i = 0;
+		
 		while (localNodes.Count > 0 && i < maxiterations)
 		{
 			i++;
@@ -40,7 +42,7 @@ public class Dijkstra
 				}
 
 				// The positive distance between node and it's neighbor, added to the distance of the current node
-				double dist = distance[minNode] + fnDistance(minNode, neighbor);
+				double dist = distance[minNode] + graph.Weight(minNode, neighbor);
 
 				if (dist < distance[neighbor])
 				{
@@ -50,7 +52,7 @@ public class Dijkstra
 			}
 
 			// If we're at the target node, break
-			if (fnEquals(minNode, targetNode))
+			if (graph.Equals(minNode, targetNode))
 				break;
 		}
 

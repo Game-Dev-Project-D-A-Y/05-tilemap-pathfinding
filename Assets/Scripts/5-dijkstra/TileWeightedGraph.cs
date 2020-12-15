@@ -47,12 +47,13 @@ public class TileWeightedGraph : IWeightedGraph<Vector3Int>
         switch (node2Tile.name)
         {
             case "bushes":
-                return 6;
+                return 4;
+                
             case "swamp":
                 return 1;
 
             case "hills":
-                return 4;
+                return 10;
 
             case "grass":
                 return 3;

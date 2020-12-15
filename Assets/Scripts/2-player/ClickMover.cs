@@ -9,7 +9,6 @@ using UnityEngine;
  */
 
 public class ClickMover: TargetMover {
-    public int a = 1;
 
     void Update() {
         if (Input.GetMouseButton(0)) {

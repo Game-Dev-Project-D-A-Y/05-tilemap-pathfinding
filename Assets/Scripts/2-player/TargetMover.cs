@@ -14,6 +14,7 @@ public class TargetMover: MonoBehaviour {
     [SerializeField] float speed = 2f;
     [SerializeField] float speedOfBushes = 1.5f;
     [SerializeField] float speedOfHills = 1f;
+    [SerializeField] float speedOfSwamp = 1.8f;
 
     [Tooltip("Maximum number of iterations before BFS algorithm gives up on finding a path")]
     [SerializeField] int maxIterations = 1000;
@@ -38,19 +39,21 @@ public class TargetMover: MonoBehaviour {
         return targetInWorld;
     }
 
-    public void StartMover()
-    {
-        Start();
-    }
-
     //private TilemapGraph tilemapGraph = null;
+
+    // Added TileWeightedGraph:
     private TileWeightedGraph tilemapGraph;
+    
     private float timeBetweenSteps;
 
     protected virtual void Start() {
         targetInWorld = transform.position;
         targetInGrid = tilemap.WorldToCell(targetInWorld);
+
+        //Erel's code:
         //tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
+
+        // Changed to IWeightedGraph implementation:
         tilemapGraph = new TileWeightedGraph(tilemap, allowedTiles.Get());
 
 
@@ -59,24 +62,22 @@ public class TargetMover: MonoBehaviour {
 
     IEnumerator MoveTowardsTheTarget() {
         for(;;) {
-            timeBetweenSteps = 1 / speed;
             TileBase currTile = tilemap.GetTile(tilemap.WorldToCell(transform.position));
-            //if (currTile == null) yield break;
+
+            // Change speed on certain type of tiles:
             if (currTile != null)
             {
                 if (currTile.name == "bushes")
                 {
-                    // timeBetweenSteps *= 1/0.9f ;
                     timeBetweenSteps = 1 / speedOfBushes;
                 }
                 if (currTile.name == "hills")
                 {
-                    // timeBetweenSteps *= 1/0.9f ;
                     timeBetweenSteps = 1 / speedOfHills;
                 }
                 if (currTile.name == "swamp")
                 {
-                    timeBetweenSteps = 1 / speed;
+                    timeBetweenSteps = 1 / speedOfSwamp;
                 }
                 if (currTile.name == "grass")
                 {
@@ -93,15 +94,17 @@ public class TargetMover: MonoBehaviour {
     private void MakeOneStepTowardsTheTarget() {
         Vector3Int startNode = tilemap.WorldToCell(transform.position);
         Vector3Int endNode = targetInGrid;
+
+        // Erel's code:
         //List<Vector3Int> shortestPath = BFS.GetPath(tilemapGraph, startNode, endNode, maxIterations);
+
+        // Changed to Dijkstra algorithm:
         List<Vector3Int> shortestPath = Dijkstra.ShortestPath<Vector3Int>(tilemapGraph, 
             startNode, 
-            endNode, 
-            tilemapGraph.Equals, 
-            tilemapGraph.Weight, 
+            endNode,  
             maxIterations);
 
-        Debug.Log("shortestPath1 = " + string.Join(" , ",shortestPath));
+        Debug.Log("Dijkstra shortestPath = " + string.Join(" , ",shortestPath));
         if (shortestPath.Count >= 2) {
             Vector3Int nextNode = shortestPath[1];
             transform.position = tilemap.GetCellCenterWorld(nextNode);
