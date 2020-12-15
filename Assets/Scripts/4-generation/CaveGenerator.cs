@@ -96,54 +96,9 @@ public class CaveGenerator {
 
         (bufferOld, bufferNew) = (bufferNew, bufferOld);
 
-        /*
-        for (int x = 0; x < gridSize; x++)
-        {
-            for (int y = 0; y < gridSize; y++)
-            {
-                if (bufferOld[x, y] == 1) continue;
-
-                int surroundingTiles = GetSurroundingTileCountByType(x, y, bufferOld[x, y]);
-                if (surroundingTiles > 4)
-                {
-                    bufferNew[x, y] = bufferOld[x, y];
-                }
-                else
-                {
-                    bufferNew[x, y] = -1*(bufferOld[x, y] + 1);
-                }
-
-            }
-        }
-
-                //Swap the pointers to the buffers
-                (bufferOld, bufferNew) = (bufferNew, bufferOld);
-        */
     }
 
-    private int GetSurroundingTileCountByType(int cellX, int cellY, int type)
-    {
-        int wallCounter = 0;
-        for (int neighborX = cellX - 1; neighborX <= cellX + 1; neighborX++)
-        {
-            for (int neighborY = cellY - 1; neighborY <= cellY + 1; neighborY++)
-            {
-                //We dont need to care about being outside of the grid because we are never looking at the border
-                //This is the cell itself and no neighbor!
-                if (neighborX == cellX || neighborY == cellY)
-                {
-                    continue;
-                }
 
-                //This neighbor is a wall
-                if (bufferOld[neighborX, neighborY] == type || bufferOld[neighborX, neighborY] == 1)
-                {
-                    wallCounter += 1;
-                }
-            }
-        }
-        return wallCounter;
-    }
 
     private int mostTilesSurrounded(int cellX, int cellY)
     {
